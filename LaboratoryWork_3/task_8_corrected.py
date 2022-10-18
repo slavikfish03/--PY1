@@ -18,21 +18,9 @@ increase = 0.05
 
 month = 0  # количество месяцев, которое можно прожить
 
-sum_for_life = money_capital + salary - spend  # сумма на конец месяца
-
-counter = 1  # так как первый месяц уже прожили (sum_for_life > 0)
-while True:
+while money_capital >= spend:
+    money_capital = money_capital + salary - spend
     spend = (1 + increase) * spend
-    sum_for_life = sum_for_life + salary - spend
-    counter += 1
-    if sum_for_life < 0:
-        counter -= 1
-        """
-        Так как мы в текущем месяце уже прибавили к
-        счётчику единицу, несмотря на то, что текущий
-        месяц мы не прожили (sum_for_life < 0)
-        """
-        break
+    month += 1
 
-month = counter
 print(month)
